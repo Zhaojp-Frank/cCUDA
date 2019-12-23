@@ -1,7 +1,8 @@
 #
 # Copyright 2011-2015 NVIDIA Corporation. All rights reserved
 # 
-INCLUDES = -I /opt/cuda-8.0/extras/CUPTI/include,/share/kshekofteh/codes/nvidia/common/inc,common,.
+#INCLUDES = -I /opt/cuda-8.0/extras/CUPTI/include,/share/kshekofteh/codes/nvidia/common/inc,common,.
+INCLUDES = -I /usr/local/cuda/extras/CUPTI/include,/usr/local/cuda/samples/common/inc,common,.
 EXE = _test_runtime_vec_hs_device
 
 ifndef OS
@@ -18,8 +19,10 @@ else
         export DYLD_LIBRARY_PATH := $(DYLD_LIBRARY_PATH):../../lib
         LIBS= -Xlinker -framework -Xlinker cuda -L ../../lib -lcupti
     else
-        export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):../../lib:/opt/cuda-8.0/extras/CUPTI/lib64
-        LIBS= -lcuda -L ../../lib -L /opt/cuda-8.0/extras/CUPTI/lib64 -lcupti
+        #export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):../../lib:/opt/cuda-8.0/extras/CUPTI/lib64
+        #LIBS= -lcuda -L ../../lib -L /opt/cuda-8.0/extras/CUPTI/lib64 -lcupti
+        export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):../../lib:/usr/local/cuda/extras/CUPTI/lib64
+        LIBS= -lcuda -L ../../lib -L /usr/local/cuda/extras/CUPTI/lib64 -lcupti
     endif
     OBJ = o
 endif
